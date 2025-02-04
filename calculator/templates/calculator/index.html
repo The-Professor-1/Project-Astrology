@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% block title %}
+    <title>Astrology Calculator</title>{% endblock title %}
+</head>
+{% block body %}
+<body class="bg-gray-200">
+    <center>
+       <form method="post">
+        {% csrf_token %}
+        <div class="text-black bg-white h-auto w-[80%] lg:w-1/2 mt-20 border-2 shadow-md border-white rounded-lg p-4">
+            <article class="text-2xl bg-black p-2 text-white font-sans">Ethiopian Astrology Calculator</article>
+            <label for="{{ form.your_name.id_for_label }}" class="my-label-class">{{ form.your_name.label }}</label>
+        {{ form.your_name|add_class:"mt-10 border-2 relative border-gray-400 rounded-sm"  }}<br>
+        <label for="{{ form.your_mothers_name.id_for_label }}" class="my-label-class">{{ form.your_mothers_name.label }}</label>
+        {{ form.your_mothers_name|add_class:"relative mt-4 border-2 border-gray-400 rounded-sm"}}<br><br>
+        <button type="submit" name="action" value="calculate" class="relative border-green-800 rounded-lg h-8 lg:h-10 bg-green-600 text-white text-lg lg:text-2xl w-[60%] lg:w-52">calculate</button>
+        <button type="reset" name="reset" class="relative border-green-800 rounded-lg h-8 lg:h-10 bg-red-600 text-white text-lg lg:text-2xl w-[30%] lg:w-20">clear</button>
+        <br><br>
+       <div class="bg-gray-200 border-2 border-gray-400 h-auto w-[100%] lg:w-96 p-2 rounded-lg shadow-md">
+        {% if user %}
+            <input type="hidden" name="sign" id="sign_value" value="{{ user.sign }}">
+            <p class="text-midnightblue-500">የእርስዎ ኮከብ  "<font color="green">{{ user.sign }}</font>" ነው::</p>
+            <br>
+            <button formnovalidate class="bg-blue-900 p-2 text-l text-white w-660 border-2 border-blue-400 rounded-lg" type="submit" name='action' value="knowsign">ስለ ኮከብዎ ለማወቅ</button>
+            <br>
+            {% else %}
+            <p>result will show here.
+        {% endif %}
+            </p>
+       </div></form></div>
+    </center>
+</body>
+{% endblock body %}
+</html>

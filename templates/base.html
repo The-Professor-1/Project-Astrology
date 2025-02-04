@@ -1,0 +1,42 @@
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}{% endblock title %}
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+</head>
+<body>
+    <header>
+        <nav class="bg-black text-white p-2 w-full h-28">
+            <div class="text-2xl lg:text-4xl ml-10 lg:ml-20 mt-6" id="logo">ስነ-ከዋክብት</div>
+            <div id="menu-button" class="lg:hidden ml-[80%] -mt-6">
+                <hr class="w-6 h-1 bg-white">
+                <hr class="w-6 h-1 bg-white mt-1">
+                <hr class="w-6 h-1 bg-white mt-1"></div>
+            <ul id="menus" class="absolute bg-black lg:text-2xl p-2 mt-10 lg:-mt-10 ml-[60%] lg:ml-[55%] lg:flex md:hidden hidden flex">
+                <a href="{% url 'homepage' %}"><li class="lg:w-auto lg:hover:bg-gray-800 w-full font-sans inline-block border-1-gray-700 rounded-sm lg:mt-1 p-1 lg:ml-10 lg:hover:text-white">home</li></a>
+                <a href="{% url 'homepage' %}">  <li class="lg:w-auto lg:hover:bg-gray-800 inline-block w-full mt-1 border-1-gray-700 rounded-sm p-1 lg:ml-10 lg:hover:text-white">calculate</li></a>
+                <a href="{% url 'contactus' %}"> <li class="lg:w-auto lg:hover:bg-gray-800 inline-block w-full mt-1 border-1-gray-700 rounded-sm p-1 lg:ml-10 lg:hover:text-white">contact us</li></a>
+                <a href="{% url 'blog' %}">  <li class="lg:w-auto lg:hover:bg-gray-800 inline-block w-full mt-1 border-1-gray-700 rounded-sm p-1 lg:ml-10 lg:hover:text-white">blog</li></a>
+            </ul>
+        </nav>
+    </header>
+    {% block body %}{% endblock body %}
+    <footer class="h-20 w-full p-2 bg-black mt-96">
+        <div class="text-gray-300 text-center text-xl font-sans p-2">&copy; 2025 sinekewakibt.com, All rights reserved.</div>
+    </footer>
+    <script>
+        const menuToggle = document.getElementById('menu-button');
+        const menu = document.getElementById('menus');
+      
+        menuToggle.addEventListener('click', () => {
+          menus.classList.toggle('hidden');
+          menus.classList.toggle('flex');
+        });
+      </script>
+</body>
+</html>
